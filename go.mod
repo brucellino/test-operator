@@ -4,7 +4,7 @@ go 1.24.1
 
 require (
 	github.com/charmbracelet/log v0.4.1
-	github.com/hashicorp/nomad/api v0.0.0-20250408230747-95c914624eaa
+	github.com/hashicorp/nomad/api v0.0.0-20250411152223-d293684d3d8d
 )
 
 require (

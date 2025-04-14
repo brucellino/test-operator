@@ -30,6 +30,8 @@ github.com/hashicorp/go-rootcerts v1.0.2 h1:jzhAVGtqPKbwpyCPELlgNWhE1znq+qwJtW5O
 github.com/hashicorp/go-rootcerts v1.0.2/go.mod h1:pqUvnprVnM5bf7AOirdbb01K4ccR319Vf4pU3K5EGc8=
 github.com/hashicorp/nomad/api v0.0.0-20250408230747-95c914624eaa h1:dS7enhlf2zekXvfGRoBiMrhTn3bHS4hfRrOK4H1PrM8=
 github.com/hashicorp/nomad/api v0.0.0-20250408230747-95c914624eaa/go.mod h1:ke9JNxf926l1gzdv+hldAgk72SgvmrjSos1rRqDJLq8=
+github.com/hashicorp/nomad/api v0.0.0-20250411152223-d293684d3d8d h1:X6CyzfuQuOO/dekgrvW1KlZg+9YaMIxv2ab8dMOwJFg=
+github.com/hashicorp/nomad/api v0.0.0-20250411152223-d293684d3d8d/go.mod h1:ke9JNxf926l1gzdv+hldAgk72SgvmrjSos1rRqDJLq8=
 github.com/lucasb-eyer/go-colorful v1.2.0 h1:1nnpGOrhyZZuNyfu1QjKiUICQ74+3FNCN69Aj6K7nkY=
 github.com/lucasb-eyer/go-colorful v1.2.0/go.mod h1:R4dSotOR9KMtayYi1e77YzuveK+i7ruzyGqttikkLy0=
 github.com/mattn/go-isatty v0.0.20 h1:xfD0iDuEKnDkl03q4limB+vH+GxLEtL/jb4xVJSWWEY=
