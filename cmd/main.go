@@ -15,7 +15,7 @@ import (
 )
 
 func main() {
-	if err := run(os.Args[:]); err != nil {
+	if err := run(os.Args); err != nil {
 		log.Fatal(err)
 	}
 }
@@ -26,7 +26,7 @@ func run(args []string) error {
 	// - NOMAD_ADDR: The address of the Nomad server.
 	// - NOMAD_TOKEN: The token to use for authentication.
 	// - NOMAD_REGION: The region to use for the Nomad API.
-	log.Debugf("Launched with %s", args)
+	log.Debugf("Launched with arguments: %v", args[1:])
 	requireEnvVars := []string{"NOMAD_ADDR", "NOMAD_TOKEN"}
 
 	for _, envVar := range requireEnvVars {
@@ -50,12 +50,17 @@ func run(args []string) error {
 
 	log.Info("Nomad connection valid.")
 	log.Info("Starting Consumer")
-	// operator was stepup
 	operator, err := nomad.NewOperator(client)
 	if err != nil {
 		return fmt.Errorf("Failed to create operator %w", err)
 	}
 	// Make test parts - critical, Inner, outer, full
+	// critical, err := nomad.NewCriticalTestJob(client, operator.onEvent)
+	// inner, err := nomad.NewInnerTestJob(client, operator.onEvent)
+	// outer, err := nomad.NewOuterTestJob(client, op`
+	// erator.onEvent)
+	// full, err := nomad.NewFullTestJob(client, operator.onEvent)
+	//
 	// Make a new Job Consumer
 	eventConsumer := nomad.NewEventConsumer(client, operator.OnEvent)
 

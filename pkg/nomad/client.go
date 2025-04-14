@@ -1,3 +1,7 @@
+/*
+Package nomad provides a client for interacting with the Nomad API.
+This also includes helper structs for dealing with events, jobs, allocations, etc.
+*/
 package nomad
 
 import (
@@ -22,7 +26,7 @@ type EventConsumer struct {
 	stop    func()
 }
 
-// validateNomadConnection is a utility private function to check that the Nomad client can interact with the Nomad API.
+// ValidateNomadConnection is a utility private function to check that the Nomad client can interact with the Nomad API.
 func ValidateNomadConnection(client *api.Client) error {
 	// try to list nodes - if there are no nodes, then the api connection is not valid.
 	nodes, _, err := client.Nodes().List(&api.QueryOptions{})
@@ -73,17 +77,20 @@ func NewOperator(client *api.Client) (*Operator, error) {
 	return &Operator{
 		client: client,
 		onEvent: func(eventType string, job *api.Job) {
-			log.Infof("EventConsumer: received event %s for job %s", eventType, job)
+			log.Infof("EventConsumer: received event %s for job %s", eventType, *job.Name)
 		},
 	}, nil
 }
 
 // onAllocation is a function which takes an allocation event. It is invoked when new allocation events are received.
 func (o *Operator) onAllocation(eventType string, allocation *api.Allocation) {
-	// do nothing for now
-	return
+	// If the allocation is "completed" and job is within the range we want,
+	// start the next job in the chain
+	//
+	log.Infof("Event type: %s\n Allocation: %s", eventType, allocation.Name)
 }
 
+// NewEventConsumer is a public function which takes a client and callback function, and returns an EventConsumer instance.
 func NewEventConsumer(client *api.Client, onEvent func(eventType string, job *api.Job)) *EventConsumer {
 	return &EventConsumer{
 		client:  client,
@@ -110,11 +117,11 @@ func (ec *EventConsumer) StartEventConsumer() {
 // consumer is a private function which is used to consumer the event. It receives the event payload from Nomad and performs business logic on it.
 func (ec *EventConsumer) consume(ctx context.Context) error {
 	log.Info("Consuming events")
-	// this is the index of the event
-	var index uint64 = 0
+	// this is the index of the event we want to start at
+	var index uint64
 	// specify the topics we want to consume
 	topics := map[api.Topic][]string{
-		api.TopicJob: {"*"},
+		api.TopicJob: {"Allocation"},
 	}
 
 	// eventsClient reads the event stream, which will later loop over
@@ -172,6 +179,8 @@ func (ec *EventConsumer) consume(ctx context.Context) error {
 	}
 }
 
+// OnEvent is a handler function which performs specified tasks, based on the type and payload of event
 func (o *Operator) OnEvent(eventType string, job *api.Job) {
-	log.Infof("Node %s\n", job)
+	log.Infof("Event %s happend on Job %s\n", eventType, *job.Name)
+
 }
