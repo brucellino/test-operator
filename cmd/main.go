@@ -1,5 +1,7 @@
-// main package
-package main
+/*
+operator submits a nomad job and then subsequent jobs, based on events in Nomad.
+*/
+package main // cmd/package.go
 
 import (
 	"fmt"
