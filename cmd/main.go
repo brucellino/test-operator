@@ -1,3 +1,4 @@
+// main package
 package main
 
 import (
@@ -23,6 +24,7 @@ func run(args []string) error {
 	// - NOMAD_ADDR: The address of the Nomad server.
 	// - NOMAD_TOKEN: The token to use for authentication.
 	// - NOMAD_REGION: The region to use for the Nomad API.
+	log.Debugf("Launched with %s", args)
 	requireEnvVars := []string{"NOMAD_ADDR", "NOMAD_TOKEN"}
 
 	for _, envVar := range requireEnvVars {
@@ -54,6 +56,8 @@ func run(args []string) error {
 	// Make test parts - critical, Inner, outer, full
 	// Make a new Job Consumer
 	eventConsumer := nomad.NewEventConsumer(client, operator.OnEvent)
+
+	//
 	// shutdown part
 	signals := make(chan os.Signal, 1)
 	signal.Notify(signals, syscall.SIGINT, syscall.SIGTERM)
