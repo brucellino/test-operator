@@ -1,0 +1,12 @@
+{
+  "lot1_services": [
+    "auth",
+    "front_office",
+    "resource_hub",
+    "frontend",
+    "storage",
+    "monitoring",
+    "logging",
+    "cache"
+  ]
+}
