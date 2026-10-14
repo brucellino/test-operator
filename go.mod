@@ -3,7 +3,7 @@ module github.com/brucellino/test-operator
 go 1.24.1
 
 require (
-	github.com/charmbracelet/log v0.4.2
+	github.com/charmbracelet/log/v2 v2.0.1
 	github.com/google/uuid v1.6.0
 	github.com/hashicorp/nomad/api v0.0.0-20250408230747-95c914624eaa
 )
