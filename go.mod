@@ -1,6 +1,6 @@
 module github.com/brucellino/test-operator
 
-go 1.26.9
+go 1.27.2
 
 require (
 	charm.land/log/v2 v2.0.1
