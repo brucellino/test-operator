@@ -1,3 +1,4 @@
 [tools]
 go = "1.26.9"
 prek = "0.5.5"
+"go:github.com/go-critic/go-critic/cmd/go-critic" = "0.15.0"

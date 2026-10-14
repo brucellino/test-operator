@@ -11,7 +11,7 @@ import (
 
 	"github.com/brucellino/test-operator/pkg/config"
 	"github.com/brucellino/test-operator/pkg/nomad"
-	"github.com/charmbracelet/log"
+	"charm.land/log/v2"
 	"github.com/hashicorp/nomad/api"
 )
 
